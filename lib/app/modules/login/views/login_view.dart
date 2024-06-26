@@ -1,39 +1,22 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:presence/app/routes/app_pages.dart';
 
-import '../controllers/add_pegawai_controller.dart';
+import '../controllers/login_controller.dart';
 
-class AddPegawaiView extends GetView<AddPegawaiController> {
-  const AddPegawaiView({super.key});
+class LoginView extends GetView<LoginController> {
+  const LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('ADD PEGAWAI'),
+          title: const Text('LOGIN'),
           centerTitle: true,
         ),
         body: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-            TextField(
-              autocorrect: false,
-              controller: controller.nipC,
-              decoration: const InputDecoration(
-                labelText: "NIP",
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              autocorrect: false,
-              controller: controller.nameC,
-              decoration: const InputDecoration(
-                labelText: "Nama",
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 20),
             TextField(
               autocorrect: false,
               controller: controller.emailC,
@@ -42,18 +25,30 @@ class AddPegawaiView extends GetView<AddPegawaiController> {
                 border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
+            TextField(
+              controller: controller.passC,
+              obscureText: true,
+              decoration: const InputDecoration(
+                labelText: "Password",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20),
             Obx(
               () => ElevatedButton(
                 onPressed: () async {
                   if (controller.isLoading.isFalse) {
-                    await controller.addPegawai();
+                    await controller.login();
                   }
                 },
-                child: Text(controller.isLoading.isFalse
-                    ? "ADD PEGAWAI"
-                    : "LOADING..."),
+                child:
+                    Text(controller.isLoading.isFalse ? "LOGIN" : "LOADING..."),
               ),
+            ),
+            TextButton(
+              onPressed: () => Get.toNamed(Routes.FORGOT_PASSWORD),
+              child: const Text("Lupa Password ?"),
             ),
           ],
         ));
