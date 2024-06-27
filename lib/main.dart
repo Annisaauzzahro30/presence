@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,10 +26,12 @@ void main() async {
             );
           }
           print(snapshot.data);
-          return GetMaterialApp(
-            title: "Application",
-            initialRoute: snapshot.data != null ? Routes.HOME : Routes.LOGIN,
-            getPages: AppPages.routes,
+          return DevicePreview(
+            builder: (contex) => GetMaterialApp(
+              title: "Application",
+              initialRoute: snapshot.data != null ? Routes.HOME : Routes.LOGIN,
+              getPages: AppPages.routes,
+            ),
           );
         }),
   );
