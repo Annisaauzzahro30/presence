@@ -13,6 +13,7 @@ dependencies:
   cloud_firestore: 4.15.8
   firebase_storage: 11.6.9
   device_preview: 1.1.0
+  image_picker: 1.1.2
   flutter:
     sdk: flutter
 
