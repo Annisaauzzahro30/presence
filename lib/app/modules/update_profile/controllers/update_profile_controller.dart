@@ -23,6 +23,8 @@ class UpdateProfileController extends GetxController {
         Get.snackbar("Berhasil", "Berhasil update profile.");
       } catch (e) {
         Get.snackbar("Terjadi kesalahan", "Tidak dapat update profile.");
+      } finally {
+        isLoading.value = false;
       }
     }
   }
